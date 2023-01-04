@@ -19,6 +19,5 @@ jobs:
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u 'hshanmuk' --password-stdin
           docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-          echo "${{ docker images -a }}"
-          echo "Images built"
+          docker push my-image-name:latest
 
