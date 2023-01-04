@@ -18,5 +18,5 @@ jobs:
       - name:  'Build and  push image'
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u 'hshanmuk' --password-stdin
-          docker image build -t demoImage:v1 -f . 
-          docker push demoImage:v1
+          docker image build -t demo-image:v1 -f . 
+          docker push demo-image:v1
