@@ -18,8 +18,8 @@ jobs:
       - name:  'Build and  push image'
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u 'hshanmuk' --password-stdin
-          docker build  -t welcome:v1 .
-          docker tag welcome:v1 hshanmuk/welcome:v1
-          docker push hshanmuk/welcome:v1
+          docker build  -t welcome:${{ github.run_number }} .
+          docker tag welcome:${{ github.run_number }} hshanmuk/welcome:${{ github.run_number }}
+          docker push hshanmuk/welcome:${{ github.run_number }}
 
 
