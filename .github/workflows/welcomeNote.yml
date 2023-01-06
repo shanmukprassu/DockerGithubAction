@@ -13,14 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
        
-      - name:  'Build and  push image'
+      - name:  'Login to Docker hub'
         run: |
           echo "Initate docker login"
           echo "${{ secrets.DOCKERPW }}" | docker login -u 'hshanmuk' --password-stdin
-          docker build  -t welcome:${{ github.run_number }} .
-          docker tag welcome:${{ github.run_number }} hshanmuk/welcome:${{ github.run_number }}
-          docker push hshanmuk/welcome:${{ github.run_number }}
-
-
+          # docker build  -t welcome:${{ github.run_number }} .
+          # docker tag welcome:${{ github.run_number }} hshanmuk/welcome:${{ github.run_number }}
+          # docker push hshanmuk/welcome:${{ github.run_number }}
+      - name: 'Bild and push image'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: hshanmuk/welcome:latest, hshanmuk/welcome:${{ github.run_number }}
