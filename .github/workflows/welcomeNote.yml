@@ -18,5 +18,4 @@ jobs:
       - name:  'Build and  push image'
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u 'hshanmuk' --password-stdin
-          docker build  --tag my-image-name:v1 --f Dockerfile
-
+          docker build  -t my-image-name:v1 .
